@@ -1,0 +1,3 @@
+Telefon,1000,23
+Laptop,3000,23
+Banan,2,23

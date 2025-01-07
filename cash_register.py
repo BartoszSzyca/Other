@@ -1,10 +1,6 @@
 class CashRegister:
     def __init__(self):
-        self.products_prices = {
-            "Telefon": {"netto": 1000, "vat": 23},
-            "Laptop": {"netto": 3000, "vat": 23},
-            "Banan": {"netto": 2, "vat": 23}
-        }
+        self.products_prices = self.load_products_prices()
         self.selected_products = []
 
     def __str__(self):
@@ -94,6 +90,14 @@ class CashRegister:
 
     def show_receipt(self):
         return self.generate_receipt()
+
+    def load_products_prices(self):
+        with open("products_prices.txt" , 'r', encoding="utf-8") as file:
+            products_prices = {}
+            for line in file:
+                product, netto ,vat = line.strip().split(',')
+                products_prices[product] = {"netto": float(netto), 'vat': int(vat)}
+        return products_prices
 
 
 if __name__ == "__main__":
